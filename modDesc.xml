@@ -1,18 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
 <modDesc descVersion="100">
-  <author>YourName</author>
+  <title>FS25 Propane Delivery</title>
+  <description>Automated and manual propane delivery for production tanks.</description>
+  <author>YourNameHere</author>
   <version>1.0.0.0</version>
-  <title>
-    <en>Propane Delivery System</en>
-  </title>
-  <description>
-    <en>Adds propane delivery and scheduling options to propane tanks on the Ray County map.</en>
-  </description>
-
-  <iconFilename>modIcon.dds</iconFilename>
-  <multiplayer supported="true"/>
 
   <scriptFiles>
+    <script file="propaneDelivery.lua"/>
+    <script file="propaneDeliveryUI.lua"/>
     <script file="mod.lua"/>
   </scriptFiles>
+
+  <iconFilename>modIcon.dds</iconFilename>
 </modDesc>
