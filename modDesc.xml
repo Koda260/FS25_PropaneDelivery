@@ -4,6 +4,11 @@
   <author>YourNameHere</author>
   <version>1.0.0.0</version>
 
+  <!-- 👇 THIS tells FS25 it's a script utility mod -->
+  <extraSourceFiles/>
+  <modType>script</modType>
+  <category>placeable</category>
+
   <scriptFiles>
     <script file="propaneDelivery.lua"/>
     <script file="propaneDeliveryUI.lua"/>
