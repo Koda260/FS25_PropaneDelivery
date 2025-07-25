@@ -7,56 +7,43 @@ function PropaneDeliveryUI:new(productionScreen, deliverySystem)
     local self = setmetatable({}, PropaneDeliveryUI)
     self.productionScreen = productionScreen
     self.deliverySystem = deliverySystem
-    self:injectButton()
+
+    -- Patch the update function for the production details panel
+    self.originalUpdateDetails = productionScreen.updateProductionDetails
+
+    productionScreen.updateProductionDetails = function(screen, production, ...) 
+        self.originalUpdateDetails(screen, production, ...)
+        self:onProductionSelected(screen, production)
+    end
+
     return self
 end
 
-function PropaneDeliveryUI:injectButton()
-    if not self.productionScreen or not self.productionScreen.buttonFrame then
-        print("[PropaneDeliveryUI] Failed to inject UI: buttonFrame not found.")
-        return
+function PropaneDeliveryUI:onProductionSelected(screen, production)
+    if not production then return end
+
+    local tankId = production.id
+    local tank = self.deliverySystem:getTankById(tankId)
+    if not tank then return end -- not a propane tank
+
+    -- Add our custom "Propane Delivery" button
+    if self.button == nil then
+        self.button = ButtonElement:new()
+        self.button:setText("Propane Delivery")
+        self.button.onClickCallback = function()
+            self:openDeliveryDialog(tankId, tank)
+        end
+        screen.pageButtonBox:addElement(self.button)
     end
 
-    self.button = ButtonElement:new()
-    self.button:setText("Propane Delivery")
-    self.button.onClickCallback = function()
-        self:openDialog()
-    end
-
-    self.productionScreen.buttonFrame:addElement(self.button)
+    self.button:setVisible(true)
 end
 
-function PropaneDeliveryUI:openDialog()
-    local selectedProduction = self.productionScreen.production
-    if not selectedProduction or not selectedProduction.fillTypeStats then
-        print("[PropaneDeliveryUI] No production selected or no fill stats.")
-        return
-    end
-
-    local tankId = selectedProduction.id
-    local tank = self.deliverySystem:getTankById(tankId)
-    if not tank then
-        print("[PropaneDeliveryUI] Selected production is not a registered propane tank.")
-        return
-    end
-
-    local dialog = g_gui.guis["MessageDialog"]
+function PropaneDeliveryUI:openDeliveryDialog(tankId, tank)
     local fillLevel = tank:getFillLevel()
     local capacity = tank:getCapacity()
     local spaceLeft = capacity - fillLevel
 
-    local message = string.format("Tank has %d L propane.\nSelect amount to deliver:", fillLevel)
-
-    g_gui:showDialog({
-        target = self,
-        text = message,
-        dialogType = DialogElement.TYPE_OK_CANCEL,
-        yesButtonText = "Deliver Max",
-        noButtonText = "Cancel",
-        callback = function(_, result)
-            if result == DialogElement.BUTTON_YES then
-                self.deliverySystem:performDelivery(tankId, false)
-            end
-        end
-    })
-end
+    if spaceLeft <= 0 then
+        g_gui:showInfoDialog({
+            text = "
