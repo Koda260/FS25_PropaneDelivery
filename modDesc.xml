@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<modDesc descVersion="72">
+<modDesc descVersion="100">
   <author>YourName</author>
   <version>1.0.0.0</version>
   <title>
@@ -15,17 +15,4 @@
   <scriptFiles>
     <script file="mod.lua"/>
   </scriptFiles>
-
-  <maps>
-    <map id="rayCounty" className="Mission00" filename="$dataS/scripts/missions/mission00.lua"/>
-  </maps>
-
-  <extraSourceFiles>
-    <extraSourceFile file="propaneDelivery.lua"/>
-    <extraSourceFile file="propaneDeliveryUI.lua"/>
-  </extraSourceFiles>
-
-  <dependencies>
-    <!-- Add dependency info if needed (e.g. Ray County map ID) -->
-  </dependencies>
 </modDesc>
