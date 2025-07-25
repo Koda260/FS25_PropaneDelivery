@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modDesc descVersion="74">
+  <author>YourName</author>
+  <version>1.0.0.0</version>
+  <title>
+    <en>Propane Delivery System</en>
+  </title>
+  <description>
+    <en>Adds propane delivery and scheduling options to propane tanks on the Ray County map.</en>
+  </description>
+
+  <iconFilename>modIcon.dds</iconFilename>
+  <multiplayer supported="true"/>
+
+  <scriptFiles>
+    <script file="mod.lua"/>
+  </scriptFiles>
+
+  <maps>
+    <map id="rayCounty" className="Mission00" filename="$dataS/scripts/missions/mission00.lua"/>
+  </maps>
+
+  <extraSourceFiles>
+    <extraSourceFile file="propaneDelivery.lua"/>
+    <extraSourceFile file="propaneDeliveryUI.lua"/>
+  </extraSourceFiles>
+
+  <dependencies>
+    <!-- Add dependency info if needed (e.g. Ray County map ID) -->
+  </dependencies>
+</modDesc>
