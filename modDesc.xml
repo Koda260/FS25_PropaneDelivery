@@ -1,18 +1,19 @@
-<modDesc descVersion="100" mapId="FS25_PropaneDelivery">
-  <title>FS25 Propane Delivery</title>
-  <description>Automated and manual propane delivery for production tanks.</description>
-  <author>YourNameHere</author>
-  <version>1.0.0.0</version>
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<modDesc descVersion="75">
+    <author>Koda260</author>
+    <version>1.0.0.0</version>
+    <title>
+        <en>Propane Delivery Mod</en>
+    </title>
+    <description>
+        <en>Adds propane delivery support to placeable propane tanks on the Ray County map.</en>
+    </description>
 
-  <extraSourceFiles/>
-  <modType>script</modType>
-  <category>placeable</category>
+    <iconFilename>icon.dds</iconFilename>
 
-  <scriptFiles>
-    <script file="propaneDelivery.lua"/>
-    <script file="propaneDeliveryUI.lua"/>
-    <script file="mod.lua"/>
-  </scriptFiles>
+    <scriptFiles>
+        <scriptFile>mod.lua</scriptFile>
+    </scriptFiles>
 
-  <iconFilename>modIcon.dds</iconFilename>
+    <multiplayer supported="true" />
 </modDesc>
