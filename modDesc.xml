@@ -1,10 +1,9 @@
-<modDesc descVersion="100">
+<modDesc descVersion="100" mapId="FS25_PropaneDelivery">
   <title>FS25 Propane Delivery</title>
   <description>Automated and manual propane delivery for production tanks.</description>
   <author>YourNameHere</author>
   <version>1.0.0.0</version>
 
-  <!-- 👇 THIS tells FS25 it's a script utility mod -->
   <extraSourceFiles/>
   <modType>script</modType>
   <category>placeable</category>
