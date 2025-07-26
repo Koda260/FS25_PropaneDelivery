@@ -1,3 +1,5 @@
+print("🔥 FS25_PropaneDelivery: mod.lua executed")
+
 -- File: mod.lua
 
 modDirectory = g_currentModDirectory
